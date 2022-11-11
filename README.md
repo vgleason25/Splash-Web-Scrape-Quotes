@@ -17,12 +17,12 @@ From within the projects folder
 Type cd projects if necessary  
 Create a new project by typing: 
   
-scrapy startproject quotes     
+    scrapy startproject quotes     
 Use cd quotes to get into the new quotes folder to scaffold the new spider  
 ### Scaffold the new spider  
 Type: 
   
-scrapy genspider quote quotes.toscrape.com/js/    
+    scrapy genspider quote quotes.toscrape.com/js/    
 ## Launch VS Code from the Anaconda virtual_workspace environment  
 Open QUOTES folder  
 ## Install Scrapy-Splash  
@@ -42,7 +42,7 @@ Add SPLASH_URL equals to single quotes, and then paste in the access code.
 The webpage my Splash is working on starts with: http://localhost:8050   
 Like this: 
   
-SPLASH_URL = 'http://localhost:8050/'    
+    SPLASH_URL = 'http://localhost:8050/'    
 #### Add DOWNLOADER_MIDDLEWARES  
 Copy the code from #2 in the Configuration section of the github page  
 In VS Code:  
@@ -51,11 +51,11 @@ Scroll to the middle to the section called “Enable or disable downloader middl
 Highlight the DOWNLOADER_MIDDLEWARES = {} section and paste in what you copied from the github  
 Like this:  
     
-DOWNLOADER_MIDDLEWARES = {  
-    'scrapy_splash.SplashCookiesMiddleware': 723,  
-    'scrapy_splash.SplashMiddleware': 725,  
-    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,  
-}    
+    DOWNLOADER_MIDDLEWARES = {  
+        'scrapy_splash.SplashCookiesMiddleware': 723,  
+        'scrapy_splash.SplashMiddleware': 725,  
+        'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,  
+    }    
 #### Add SPIDER_MIDDLEWARES  
 Copy the code from #3 in the Configuration section of the github page  
 In VS Code:  
@@ -64,9 +64,9 @@ Scroll to the middle to the section called “Enable or disable spider middlewar
 Highlight the SPIDER_MIDDLEWARES = {} section and paste in what you copied from the github  
 Like this:  
   
-SPIDER_MIDDLEWARES = {  
-    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,  
-}      
+    SPIDER_MIDDLEWARES = {  
+        'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,  
+    }      
 #### Set the duplicator filter class  
 This step will prevent duplicate requests   
 Copy the code from #4 in the Configuration section of the github page    
@@ -76,12 +76,12 @@ Scroll to the middle to the section called “Enable or disable downloader middl
 After the DOWNLODER_MIDDLEWARES section, paste in the DUPEFILTER_CLASS you copied from the github  
 Like this: 
    
-DOWNLOADER_MIDDLEWARES = {  
-    'scrapy_splash.SplashCookiesMiddleware': 723,  
-    'scrapy_splash.SplashMiddleware': 725,  
-    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,  
-}    
-DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'    
+    DOWNLOADER_MIDDLEWARES = {  
+        'scrapy_splash.SplashCookiesMiddleware': 723,  
+        'scrapy_splash.SplashMiddleware': 725,  
+        'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,  
+    }    
+    DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'    
 Crtl + s to save  
 Import scrapy-splash  
 At the top of the quote.py file, add from scrapy_splash import SplashRequest  
@@ -102,12 +102,12 @@ You have to tell Splash to wait when you go to a new url to make sure the url is
 Return splash html, since that is what Scrapy is going to need  
 Like this:  
   
-function main(splash, args)  
-  url = args.url  
-  assert(splash:go(url))  
-  assert(splash:wait(1))  
-  return splash:html()   
-end    
+    function main(splash, args)  
+    url = args.url  
+    assert(splash:go(url))  
+    assert(splash:wait(1))  
+    return splash:html()   
+    end    
 Click the “Render” button  
 This returned the html that looks correct, so that is good  
 Copy the Splash script  
