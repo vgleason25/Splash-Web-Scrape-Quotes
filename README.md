@@ -109,7 +109,8 @@ Copy the Splash script
 Open the quote spider  
 ### Add the Script:  
 In properties, type: script = then triple quotes and then paste in the contents of the Splash script, then end with triple quotes   
-Like this:  
+Like this: 
+ 
     script = '''  
         function main(splash, args)  
             url = args.url  
@@ -138,8 +139,7 @@ Like so:
         yield SplashRequest(url="http://quotes.toscrape.com/", callback=self.parse,   endpoint="execute", args={  
             'lua_source': self.script  
         })  
- 
-    def parse(self, response):  
+     def parse(self, response):  
   
 ### Modify the parse() method  
 Change the pass inside the parse method to print(response.body)  
