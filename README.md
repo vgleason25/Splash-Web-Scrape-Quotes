@@ -153,7 +153,7 @@ Change the pass inside the parse method to print(response.body)
 This will print the html markup   
 Looks like this:  
   
-   def parse(self, response):  
+    def parse(self, response):  
         print(response.body)  
 
 Crtl + s to save the file   
@@ -167,22 +167,25 @@ We want to get the quote text, the author, and all the tags from each entry. Let
 All the elements for a single entry are in a div with a class of quote as seen here:  
 //div[@class='quote']  
 - Quote text:   
-//div[@class='quote']/span[@class='text']/text()  
+  
+    //div[@class='quote']/span[@class='text']/text()  
 
 - Author:  
-//div[@class='quote']/span/small[@class='author']/text()  
+  
+    //div[@class='quote']/span/small[@class='author']/text()  
 
 - Tags:   
-//div[@class='quote']/div[@class='tags']/a/text()  
+  
+    //div[@class='quote']/div[@class='tags']/a/text()  
 
 ## In VS Code:  
 Within the parse method, delete the print statement  
 Write: for quote in response.xpath(“<enter the address of a single entry>”):  
 Within the parse statement, write  yield, followed by curly brackets  
 The three items we will yield, written in dict form are:   
-Quote text  
-Author  
-Tags  
+- Quote text  
+- Author  
+- Tags  
 So it looks like this:  
   
     def parse(self, response):  
