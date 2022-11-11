@@ -1,5 +1,7 @@
 # Splash-Web-Scrape-Quotes  
-Scrape quotes from multi-page JavaScript website using Splash and Scrapy  
+Scrape quotes from multi-page JavaScript website using Splash and Scrapy 
+
+Following is the objective and process for achieving the objective in Section 11 of Modern Web Scraping class on Udemy.
 
 # Modern Web Scraping Section 11: Scraping JavaScript Websites using Splash Part 6: Scraping Quotes Website Assessment  
 ## Objective  
@@ -171,17 +173,17 @@ We want to get the quote text, the author, and all the tags from each entry. Let
 All the elements for a single entry are in a div with a class of quote as seen here:  
 //div[@class='quote']  
 - Quote text:   
-
+  
   
     //div[@class='quote']/span[@class='text']/text()  
 
 - Author:  
-
+  
   
     //div[@class='quote']/span/small[@class='author']/text()  
 
 - Tags:   
-
+  
   
     //div[@class='quote']/div[@class='tags']/a/text()  
 
