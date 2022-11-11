@@ -30,7 +30,7 @@ To be able to use Splash with Scrapy, we need to install a package called scrapy
 Go to https://github.com/scrapy-plugins/scrapy-splash   
 Copy the installation command at the top of the page: 
   
-pip install scrapy-splash    
+    pip install scrapy-splash    
 In Anaconda Prompt, paste: pip install scrapy-splash <PRESS ENTER>  
 Now we have scrapy-splash installed   
 ## Configure Scrapy-Splash  
@@ -83,8 +83,10 @@ Like this:
     }    
     DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'    
 Crtl + s to save  
-Import scrapy-splash  
-At the top of the quote.py file, add from scrapy_splash import SplashRequest  
+## Import scrapy-splash  
+At the top of the quote.py file, add:
+
+    from scrapy_splash import SplashRequest  
 Crtl + s to save  
 ## Boot up Splash  
 Open Docker Desktop  
@@ -112,7 +114,7 @@ Click the “Render” button
 This returned the html that looks correct, so that is good  
 Copy the Splash script  
 ## In VS Code  
-Open the quote spider  
+Open the quote.py spider  
 ### Add the Script:  
 In properties, type: script = then triple quotes and then paste in the contents of the Splash script, then end with triple quotes   
 Like this: 
@@ -159,7 +161,9 @@ Looks like this:
 Crtl + s to save the file   
 ## Open the integrated terminal  
 Terminal > New terminal  
-Execute the command scrapy crawl quote  
+Execute the command:
+
+    scrapy crawl quote  
 As you can see, we did get the html markup as expected  
 Now we can write the parse to get the contents  
 ## In Developer tools:  
@@ -167,25 +171,31 @@ We want to get the quote text, the author, and all the tags from each entry. Let
 All the elements for a single entry are in a div with a class of quote as seen here:  
 //div[@class='quote']  
 - Quote text:   
+
   
     //div[@class='quote']/span[@class='text']/text()  
 
 - Author:  
+
   
     //div[@class='quote']/span/small[@class='author']/text()  
 
 - Tags:   
+
   
     //div[@class='quote']/div[@class='tags']/a/text()  
 
 ## In VS Code:  
 Within the parse method, delete the print statement  
-Write: for quote in response.xpath(“<enter the address of a single entry>”):  
+Write: 
+    
+    for quote in response.xpath(“<enter the address of a single entry>”):  
 Within the parse statement, write  yield, followed by curly brackets  
 The three items we will yield, written in dict form are:   
 - Quote text  
 - Author  
 - Tags  
+
 So it looks like this:  
   
     def parse(self, response):  
@@ -195,12 +205,13 @@ So it looks like this:
                 'Author': currency.xpath(".//span/small[@class='author']/text()").get(),  
                 'Tags': currency.xpath(".//div[@class='tags']/a/text()").get_all()  
             }  
-
 Crtl + s to save  
 ## In the integrated terminal  
 If not already open, Terminal > New terminal  
 Optionally, type “cls” to clear contents  
-Execute the command: scrapy crawl quote  
+Execute the command: 
+
+    scrapy crawl quote  
 This returned the desired results for page one  
 Now we can add the “next” button clicking statement within the parse statement  
 ## In VS Code:  
@@ -220,11 +231,16 @@ Crtl + s to save
 ## In the integrated terminal  
 If not already open, Terminal > New terminal  
 Optionally, type “cls” to clear contents  
-Execute the command: scrapy crawl quote  
+Execute the command: 
+
+    scrapy crawl quote  
 This returned an  'item_scraped_count': 100,  
 There are ten quotes on page one and the last page to have a “next” button links to page 10, so that checks out  
 ## Save file  
-Execute the command: scrapy crawl quote -O extractedQuotes.csv to save the quotes to a csv file  
+To save the quotes to a csv file, execute the command: 
+
+    scrapy crawl quote -O extractedQuotes.csv 
+     
 ## Optionally, upload project to GitHub  
 
 
